@@ -13,9 +13,10 @@ namespace GCLab5
             {
                 //Ask user if they want to play
                 Console.WriteLine($"{userName} would you like to roll some dice (y/n)? ");
-                bool Casino = GetYesorNo();
+                bool Casino = Continue();
                 if (Casino == false)
                 {
+                    Console.WriteLine($"\n{userName} I shouldn't have even asked for your name. Good riddance!" );
                     return;
                 }
 
@@ -43,7 +44,7 @@ namespace GCLab5
 
                         //Prompt user for another roll
                         Console.Write($"{userName} you like to roll the same dice again (y/n)? ");
-                        repeat = GetYesorNo();
+                        repeat = Continue();
                         Casino = false;
                     }
 
@@ -51,19 +52,19 @@ namespace GCLab5
             }
         }
 
-        private static bool GetYesorNo()
+        private static bool Continue()
         {
             bool valid = true;
             bool repeat = true;
             while (valid)
             {
-                string answer = Console.ReadLine().ToLower();
-                if (answer == "y" || answer == "yes")
+                string answer = Console.ReadLine();
+                if (answer == "y" || answer == "Y" )
                 {
                     valid = false;
                     repeat = true;
                 }
-                else if (answer == "n" || answer == "no")
+                else if (answer == "n" || answer == "N")
 
                 {
                     valid = false;
@@ -71,7 +72,7 @@ namespace GCLab5
                 }
                 else
                 {
-                    Console.Write("Did not enter a valid input. Please enter (y/n): ");
+                    Console.Write("That was not a valid input. Go ahead, try again, and make sure I can read it. (y/n) ");
                 }
             }
             return repeat;
